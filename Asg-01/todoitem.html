@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/todo.css">
+  <title>TO DO LiST</title>
+
+</head>
+
+<body>
+
+  <header>
+
+    <div class="header_section">
+      <div class="container">
+        <a href="profile.html"><img id="profile_icon" src="images/user-2.svg"></a>
+        <div class="navbar">
+          <nav>
+            <ul>
+              <a href="home.html">
+                <li>logout</li>
+              </a>
+              <a href="home.html">
+                <li><img id="logout_icon" src="images/logout.svg"></li>
+              </a>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <section class="one">
+
+    <div class="container">
+      <div class="itemlist"></div>
+      <span><input type="text" id="inputfield"></span><span><button id="addtodo" onclick="addmore()"><strong>+</strong></button></span>
+      <div class="notation">
+        <span id="error"></span>
+      </div>
+
+      <table id="box" class="list_data">
+
+      </table>
+    </div>
+
+  </section>
+
+</body>
+
+<script>
+
+  function addmore() {
+    document.getElementById('error').innerHTML = "";
+    var addtodo_item = document.getElementById('addtodo');
+    var input_field = document.getElementById('inputfield').value;
+    var p=document.createElement('p');
+
+    if (input_field == "") {
+      document.getElementById('error').innerHTML = "please enter value";
+    }else{
+   var box=document.getElementById('box');
+   var li=document.createElement('tr');
+   var td1=document.createElement('td');
+   p.textContent=input_field;
+   td1.append(p);
+   var td2=document.createElement('td');
+   var a=document.createElement('button');
+   a.textContent="Delete";
+   a.className="delete_button";
+
+   a.onclick =function () {
+                li.parentNode.removeChild(li);
+                
+            }
+    };
+
+   td2.appendChild(a);
+   li.append(td1);
+   li.append(td2);
+
+   box.appendChild(li);
+   document.getElementById('inputfield').value="";
+  }
+
+</script>
+
+</html>

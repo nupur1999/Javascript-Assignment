@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/image-style.css" type="text/css">
+
+    <script src="validation.js"></script> 
+
+    <title>Profile</title>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="navbar" style="height: 150PX;"></div>
+
+    </header>
+
+    <section class="section_one" style="margin-top: -155px;">
+        <div class="container">
+            <div class="profile-pic-div" style="background-color: white; border: none">
+                <img src="images/image-1.jpg" id="photo" style="margin-top: 30px;">
+                <input type="file" id="file">
+                <label for="file" id="uploadBtn">Choose Photo</label>
+            </div>
+        </div>
+
+        <script>
+
+            const imgDiv = document.querySelector('.profile-pic-div');
+            const img = document.querySelector('#photo');
+            const file = document.querySelector('#file');
+            const uploadBtn = document.querySelector('#uploadBtn');
+
+            imgDiv.addEventListener('mouseenter', function () {
+                uploadBtn.style.display = "block";
+            });
+
+            imgDiv.addEventListener('mouseleave', function () {
+                uploadBtn.style.display = "none";
+            });
+
+            file.addEventListener('change', function () {
+                const choosedFile = this.files[0];
+                if (choosedFile) {
+                    const reader = new FileReader(); 
+                    reader.addEventListener('load', function () {
+                        img.setAttribute('src', reader.result);
+                    });
+                    reader.readAsDataURL(choosedFile);
+                }
+            });
+
+        </script>
+
+    </section>
+
+    <section class="section_two">
+        <div class="container">
+            <div class="inner_two" style="text-align: center">
+                <button id="button" onclick="make_editable()">edit</button>
+
+                <div class="two_inner_div" style="margin-top: 23px;">
+                    <label class="input_labels" for="first_name">First Name</label>
+                    <input class="input_forms" type=text name="First_name" value="" id="first_name">
+                    <spam id="Message"></spam>
+                </div>
+
+                <div class="two_inner_div">
+                    <label class="input_labels" for="last_name">Last Name</label>
+                    <input class="input_forms" type=text name="Last_name" id="last_name" value="" style="margin-left: 56px;">
+                    <spam id="Message_zero"></spam>
+                </div>
+
+                <div class="two_inner_div">
+                    <label class="input_labels" for="email">Username</label>
+                    <input class="input_forms" type=email name="Email" id="email" value="" style="margin-left: 60px;">
+                    <spam id="Message_one"></spam>
+                </div>
+
+                <div class="two_inner_div" style="margin-left: 419px;">
+                    <label for="password">Password</label>
+                    <input class="input_forms" type="password" id="password" name="password" value="" style="margin-left: 66px;">
+                    <spam id="Message_two"></spam>
+                </div>
+
+
+                <div class="two_inner_div">
+                    <label for="Gender" class="input_labels">Gender</label>
+                    <input type=radio name="gender" id="Gender" value="male"
+                        style="margin-left: 83px; margin-right: 15px;">Male</input> <input type=radio name="gender"
+                        id="Gender" value="female" style="margin-left:30px;margin-right: 15px;">Female</input>
+                        <spam id="Message_three"> </spam> 
+                </div>
+
+                <div class="two_inner_div">
+                    <label class="input_labels" for="address">Address</label>
+                    <textarea class="input_forms" name="mytext" id="address" rows=10 cols=20 value=""
+                        style="resize: none; height: 15px; margin-left: 79px;"></textarea>
+                        <spam id="Message_four"></spam>
+                </div>
+
+
+                <div class="two_inner_div">
+                    <button id="save_details" onclick="return validate()">Save Details</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+
+        function make_editable() {
+            document.getElementById("first_name").disabled = false;
+            document.getElementById("last_name").disabled = false;
+            document.getElementById("email").disabled = false;
+            document.getElementById("password").disabled = false;
+            document.getElementById("Gender").disabled = false;
+            document.getElementById("address").disabled = false;
+        }
+
+       document.getElementById("first_name").value = localStorage.getItem('Firstname');
+        document.getElementById("first_name").disabled = true;
+
+        document.getElementById("last_name").value = localStorage.getItem('Lastname');
+        document.getElementById("last_name").disabled = true;
+
+        document.getElementById("email").value = localStorage.getItem('Email');
+        document.getElementById("email").disabled = true;
+
+        document.getElementById("password").value = localStorage.getItem('Password');
+        document.getElementById("password").disabled = true;
+
+        document.getElementById("Gender").value = localStorage.getItem('gender');
+        document.getElementById("Gender").disabled = true;
+
+        document.getElementById("address").value = localStorage.getItem('address');
+        document.getElementById("address").disabled = true;
+
+    </script>
+
+</body>
+</html>
